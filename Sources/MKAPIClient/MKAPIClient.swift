@@ -68,7 +68,7 @@ public class MKAPIClient: APIClient {
     
     @available(iOS 13.0, *)
     func request<D: Decodable>(request: URLRequest) -> AnyPublisher<D, NetworkError> {
-        if checkInternetConnection() {
+        if !checkInternetConnection() {
             return Fail(error: NetworkError.noInternet)
                 .eraseToAnyPublisher()
         }
